@@ -268,6 +268,9 @@ namespace ColorLinesNG {
 			return 0;
 		}
 
+		private string GetString(int id) {
+			return GLView.context.Resources.GetString(id);
+		}
 		public void MakeLabels(bool landscape, float left, float right, float bottom, float top, float scale) {
 			this.left = left;
 			this.right = right;
@@ -289,18 +292,18 @@ namespace ColorLinesNG {
 			if (!landscape) {
 				this.bestScore = new CLLabel(this.scoresTable[0,1], this.textSize, left, top, width, height, Paint.Align.Right, Color.Argb(255, 0, 170, 0));
 				this.userScore = new CLLabel(this.score.ToString(), this.textSize, left+step*6, top, width, height, Paint.Align.Right, Color.Argb(255, 0, 170, 0));
-				this.results = new CLLabel("РЕЗУЛЬТАТЫ", this.textSize, left, bottom+step, width, height, Paint.Align.Center, Color.Argb(255, 0, 170, 0));
-				this.start = new CLLabel("НАЧАЛО", this.textSize, left+step*3, bottom+step, width, height, Paint.Align.Center, Color.Argb(255, 0, 170, 0));
-				this.exit = new CLLabel("ВЫХОД", this.textSize, left+step*6, bottom+step, width, height, Paint.Align.Center, Color.Argb(255, 0, 170, 0));
+				this.results = new CLLabel(GetString(Resource.String.Results), this.textSize, left, bottom+step, width, height, Paint.Align.Center, Color.Argb(255, 0, 170, 0));
+				this.start = new CLLabel(GetString(Resource.String.Restart), this.textSize, left+step*3, bottom+step, width, height, Paint.Align.Center, Color.Argb(255, 0, 170, 0));
+				this.exit = new CLLabel(GetString(Resource.String.Exit), this.textSize, left+step*6, bottom+step, width, height, Paint.Align.Center, Color.Argb(255, 0, 170, 0));
 			} else {
 				this.bestScore = new CLLabel(this.scoresTable[0,1], this.textSize, right-step*3, top, width, height, Paint.Align.Right, Color.Argb(255, 0, 170, 0));
 				this.userScore = new CLLabel(this.score.ToString(), this.textSize, right-step*3, top-step, width, height, Paint.Align.Right, Color.Argb(255, 0, 170, 0));
-				this.results = new CLLabel("РЕЗУЛЬТАТЫ", this.textSize, left, bottom+step, width, height, Paint.Align.Center, Color.Argb(255, 0, 170, 0));
-				this.start = new CLLabel("НАЧАЛО", this.textSize, left, bottom+step*2, width, height, Paint.Align.Center, Color.Argb(255, 0, 170, 0));
-				this.exit = new CLLabel("ВЫХОД", this.textSize, right-step*3, bottom+step, width, height, Paint.Align.Center, Color.Argb(255, 0, 170, 0));
+				this.results = new CLLabel(GetString(Resource.String.Results), this.textSize, left, bottom+step, width, height, Paint.Align.Center, Color.Argb(255, 0, 170, 0));
+				this.start = new CLLabel(GetString(Resource.String.Restart), this.textSize, left, bottom+step*2, width, height, Paint.Align.Center, Color.Argb(255, 0, 170, 0));
+				this.exit = new CLLabel(GetString(Resource.String.Exit), this.textSize, right-step*3, bottom+step, width, height, Paint.Align.Center, Color.Argb(255, 0, 170, 0));
 			}
 			this.start.Action = delegate() {
-				this.popUp = new CLLabel("СНАЧАЛА?", this.textSize, -1.0f+step*2, 1.0f-step*4, step*5, height, Paint.Align.Center, Color.Argb(255, 255, 0, 0));
+				this.popUp = new CLLabel(GetString(Resource.String.RestartQ), this.textSize, -1.0f+step*2, 1.0f-step*4, step*5, height, Paint.Align.Center, Color.Argb(255, 255, 0, 0));
 				this.popUp.ExtraDraw = delegate() {
 					CLReDraw.Rect(-1.0f+step*2, 1.0f-step*4, step*2.5f, step, this.fieldTextures[8], new float[] {
 						0.0f, 1.0f,
@@ -329,7 +332,7 @@ namespace ColorLinesNG {
 				};
 			};
 			this.exit.Action = delegate() {
-				this.popUp = new CLLabel("ВЫХОД?", this.textSize, -1.0f+step*2, 1.0f-step*4, step*5, height, Paint.Align.Center, Color.Argb(255, 255, 0, 0));
+				this.popUp = new CLLabel(GetString(Resource.String.ExitQ), this.textSize, -1.0f+step*2, 1.0f-step*4, step*5, height, Paint.Align.Center, Color.Argb(255, 255, 0, 0));
 				this.popUp.ExtraDraw = delegate() {
 					CLReDraw.Rect(-1.0f+step*2, 1.0f-step*4, step*2.5f, step, this.fieldTextures[8], new float[] {
 						0.0f, 1.0f,
@@ -726,7 +729,7 @@ namespace ColorLinesNG {
 				step = 2.0f / this.rows;
 			else
 				step = 2.0f / this.columns;
-			this.popUp = new CLLabel("Имя: ", this.textSize, -1.0f+step*2, 1.0f-step*4, step*5, step, Paint.Align.Left, Color.Argb(255, 0, 170, 0));
+			this.popUp = new CLLabel(GetString(Resource.String.Name), this.textSize, -1.0f+step*2, 1.0f-step*4, step*5, step, Paint.Align.Left, Color.Argb(255, 0, 170, 0));
 			this.popUp.Action = this.popUp.OutAction = delegate() {
 				if (GLView.et.Text != "") {
 					SaveUserScore();

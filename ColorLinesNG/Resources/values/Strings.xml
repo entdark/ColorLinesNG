@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="Hello">Hello World, Click Me!</string>
+    <string name="Exit">EXIT</string>
+    <string name="ExitQ">EXIT?</string>
+    <string name="Restart">RESTART</string>
+    <string name="RestartQ">RESTART?</string>
+    <string name="Results">RESULTS</string>
+    <string name="Name">NAME: </string>
     <string name="ApplicationName">ColorLinesNG</string>
 </resources>

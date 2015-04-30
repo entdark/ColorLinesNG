@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Exit">ВЫХОД</string>
+    <string name="ExitQ">ВЫХОД?</string>
+    <string name="Restart">НАЧАЛО</string>
+    <string name="RestartQ">СНАЧАЛА?</string>
+    <string name="Results">РЕЗУЛЬТАТЫ</string>
+    <string name="Name">ИМЯ: </string>
+    <string name="ApplicationName">ColorLinesNG</string>
+</resources>
