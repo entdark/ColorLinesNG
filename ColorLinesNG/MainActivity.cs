@@ -13,7 +13,7 @@ using Android.Content.PM;
 using CLRenderer;
 
 namespace ColorLinesNG {
-	[Activity(Label = "ColorLinesNG",
+	[Activity(Label = "@string/ApplicationName",
 		MainLauncher = true,
 		Icon = "@drawable/icon",
 		ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden,
