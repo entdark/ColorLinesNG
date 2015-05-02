@@ -647,6 +647,11 @@ namespace ColorLinesNG {
 				return false;
 			if (c.colour == CLColour.CLNone)
 				return false;
+			if (this.selected == c) {
+				this.selected.selected = false;
+				this.selected = null;
+				return true;
+			}
 			if (this.selected != null)
 				this.selected.selected = false;
 			this.selected = c;
