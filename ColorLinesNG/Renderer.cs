@@ -99,7 +99,6 @@ namespace CLRenderer {
 				GL.VertexPointer(2, All.Float, 0, this.Verticies);
 				GL.TexCoordPointer(2, All.Float, 0, this.textureCoords);
 				GL.DrawArrays(All.TriangleStrip, 0, 4);
-				GL.Finish();
 				
 				GL.DisableClientState(All.VertexArray);
 				GL.DisableClientState(All.TextureCoordArray);
@@ -114,7 +113,6 @@ namespace CLRenderer {
 					GL.DrawArrays(All.TriangleStrip, 0, 4);
 				else
 					GL.DrawArrays(All.TriangleFan, 0, (this.Verticies.Length)/2);
-				GL.Finish();
 
 				GL.DisableClientState(All.VertexArray);
 				GL.DisableClientState(All.ColorArray);
