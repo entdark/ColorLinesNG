@@ -44,6 +44,7 @@ namespace CLRenderer {
 			
 			string []textLines = text.Split('\n');
 			
+			this.paint.TextSize *= (float)canvas.Width / GLView.width * (float)canvas.Height / GLView.height;
 			paint.SetTypeface(font);
 			for (int i = 0; i < textLines.Length; i++)
 				canvas.DrawText(textLines[i], xAbsNative, yAbsNative+i*this.paint.TextSize*this.textInterval, paint);

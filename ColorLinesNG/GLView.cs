@@ -71,16 +71,17 @@ namespace ColorLinesNG {
 				bottom = -top;
 				right = (float)w / h;
 				left = -right;
-				scale = 1.5875f / right;
+				scale = 1.0583f / right;
 			} else {
 				top = (float)h / w;
 				bottom = -top;
 				right = 1.0f;
 				left = -right;
-				scale = 1.5875f / top;
+				scale = 1.0583f / top;
 			}
 			width = w;
 			height = h;
+			scale *= GLView.context.Resources.DisplayMetrics.Density;
 			if (firstCall) {
 				firstCall = false;
 				return;
