@@ -70,8 +70,9 @@ namespace ColorLinesNG {
 			"Blue",
 			"Pink",
 			"Brown",
-//			"Label",
-			"Label10",
+			"LabelSmall",
+			"LabelMiddle",
+			"LabelLarge",
 		};
 	}
 }

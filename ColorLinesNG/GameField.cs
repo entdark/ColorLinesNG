@@ -23,6 +23,11 @@ namespace ColorLinesNG {
 		CLBrown,
 		CLMax,
 	}
+	public enum CLLabelSize {
+		CLSmall,
+		CLMiddle,
+		CLLarge,
+	}
 	public class CLLabel {
 		public Action Action, ExtraDraw, OutAction;
 		private const float xLabelOffset = 0.12f;
@@ -242,11 +247,12 @@ namespace ColorLinesNG {
 				if (this.nextColours[2] != CLColour.CLNone)
 					CLReDraw.Rect(left+step*2.5f-radius, top-step*0.5f+radius, radius*2, radius*2, this.fieldTextures[(int)this.nextColours[2]]);
 			}
-			this.bestScore.Draw(this.fieldTextures[8], 0.0f, 0.0f);
-			this.userScore.Draw(this.fieldTextures[8], 0.0f, 0.0f);
-			this.results.Draw(this.fieldTextures[8], 0.0f, 0.0f);
-			this.start.Draw(this.fieldTextures[8], 0.0f, 0.0f);
-			this.exit.Draw(this.fieldTextures[8], 0.0f, 0.0f);
+			int textureId = (int)CLColour.CLMax+(int)CLLabelSize.CLSmall;
+			this.bestScore.Draw(this.fieldTextures[textureId], 0.0f, 0.0f);
+			this.userScore.Draw(this.fieldTextures[textureId], 0.0f, 0.0f);
+			this.results.Draw(this.fieldTextures[textureId], 0.0f, 0.0f);
+			this.start.Draw(this.fieldTextures[textureId], 0.0f, 0.0f);
+			this.exit.Draw(this.fieldTextures[textureId], 0.0f, 0.0f);
 			if (this.popUp != null)
 				this.popUp.ExtraDraw();
 		}
@@ -288,7 +294,6 @@ namespace ColorLinesNG {
 				this.textSize = height * 1.11125f * scale;
 			else
 				this.textSize = height * 1.11125f * scale;
-			//TODO: add localization
 			if (!landscape) {
 				this.bestScore = new CLLabel(this.scoresTable[0,1], this.textSize, left, top, width, height, Paint.Align.Right, Color.Argb(255, 0, 170, 0));
 				this.userScore = new CLLabel(this.score.ToString(), this.textSize, left+step*6, top, width, height, Paint.Align.Right, Color.Argb(255, 0, 170, 0));
@@ -305,19 +310,8 @@ namespace ColorLinesNG {
 			this.start.Action = delegate() {
 				this.popUp = new CLLabel(GetString(Resource.String.RestartQ), this.textSize, -1.0f+step*2, 1.0f-step*4, step*5, height, Paint.Align.Center, Color.Argb(255, 255, 0, 0));
 				this.popUp.ExtraDraw = delegate() {
-					CLReDraw.Rect(-1.0f+step*2, 1.0f-step*4, step*2.5f, step, this.fieldTextures[8], new float[] {
-						0.0f, 1.0f,
-						2.5f/3.0f, 1.0f,
-						0.0f, 0.0f,
-						2.5f/3.0f, 0.0f,
-					});
-					CLReDraw.Rect(-1.0f+step*4.5f, 1.0f-step*4, step*2.5f, step, this.fieldTextures[8], new float[] {
-						0.5f/3.0f, 1.0f,
-						1.0f, 1.0f,
-						0.5f/3.0f, 0.0f,
-						1.0f, 0.0f,
-					});
-					this.popUp.DrawText(0.0f, 0.0f);
+					int textureId = (int)CLColour.CLMax+(int)CLLabelSize.CLMiddle;
+					this.popUp.Draw(this.fieldTextures[textureId], 0.0f, 0.0f);
 				};
 				this.popUp.Action = delegate() {
 					if (!CheckNewScore()) {
@@ -334,19 +328,8 @@ namespace ColorLinesNG {
 			this.exit.Action = delegate() {
 				this.popUp = new CLLabel(GetString(Resource.String.ExitQ), this.textSize, -1.0f+step*2, 1.0f-step*4, step*5, height, Paint.Align.Center, Color.Argb(255, 255, 0, 0));
 				this.popUp.ExtraDraw = delegate() {
-					CLReDraw.Rect(-1.0f+step*2, 1.0f-step*4, step*2.5f, step, this.fieldTextures[8], new float[] {
-						0.0f, 1.0f,
-						2.5f/3.0f, 1.0f,
-						0.0f, 0.0f,
-						2.5f/3.0f, 0.0f,
-					});
-					CLReDraw.Rect(-1.0f+step*4.5f, 1.0f-step*4, step*2.5f, step, this.fieldTextures[8], new float[] {
-						0.5f/3.0f, 1.0f,
-						1.0f, 1.0f,
-						0.5f/3.0f, 0.0f,
-						1.0f, 0.0f,
-					});
-					this.popUp.DrawText(0.0f, 0.0f);
+					int textureId = (int)CLColour.CLMax+(int)CLLabelSize.CLMiddle;
+					this.popUp.Draw(this.fieldTextures[textureId], 0.0f, 0.0f);
 				};
 				this.popUp.Action = delegate() {
 					this.quit = true;
@@ -359,66 +342,8 @@ namespace ColorLinesNG {
 			this.results.Action = delegate() {
 				this.popUp = new CLLabel(GetBestScoresList(), this.textSize*1.337f, -1.0f+step, 1.0f-step, step*7, step*7, Paint.Align.Center, Color.Argb(255, 0, 170, 0), 1.95f);
 				this.popUp.ExtraDraw = delegate() {
-					//top edge
-					CLReDraw.Rect(-1.0f+step, 1.0f-step, step*2.5f, step*0.5f, this.fieldTextures[8], new float[] {
-						0.0f, 0.5f,
-						2.5f/3.0f, 0.5f,
-						0.0f, 0.0f,
-						2.5f/3.0f, 0.0f,
-					});
-					CLReDraw.Rect(-1.0f+step*3.5f, 1.0f-step, step*2, step*0.5f, this.fieldTextures[8], new float[] {
-						0.5f/3.0f, 0.5f,
-						2.5f/3.0f, 0.5f,
-						0.5f/3.0f, 0.0f,
-						2.5f/3.0f, 0.0f,
-					});
-					CLReDraw.Rect(-1.0f+step*5.5f, 1.0f-step, step*2.5f, step*0.5f, this.fieldTextures[8], new float[] {
-						0.5f/3.0f, 0.5f,
-						1.0f, 0.5f,
-						0.5f/3.0f, 0.0f,
-						1.0f, 0.0f,
-					});
-
-					for (int i = 0; i < 30; i++) {
-						CLReDraw.Rect(-1.0f+step, 1.0f-step*1.5f-i*step*0.2f, step*2.5f, step*0.2f, this.fieldTextures[8], new float[] {
-							0.0f, 0.6f,
-							2.5f/3.0f, 0.6f,
-							0.0f, 0.4f,
-							2.5f/3.0f, 0.4f,
-						});
-						CLReDraw.Rect(-1.0f+step*3.5f, 1.0f-step*1.5f-i*step*0.2f, step*2, step*0.2f, this.fieldTextures[8], new float[] {
-							0.5f/3.0f, 0.6f,
-							2.5f/3.0f, 0.6f,
-							0.5f/3.0f, 0.4f,
-							2.5f/3.0f, 0.4f,
-						});
-						CLReDraw.Rect(-1.0f+step*5.5f, 1.0f-step*1.5f-i*step*0.2f, step*2.5f, step*0.2f, this.fieldTextures[8], new float[] {
-							0.5f/3.0f, 0.6f,
-							1.0f, 0.6f,
-							0.5f/3.0f, 0.4f,
-							1.0f, 0.4f,
-						});
-					}
-
-					//bottom edge
-					CLReDraw.Rect(-1.0f+step, 1.0f-step*7.5f, step*2.5f, step*0.5f, this.fieldTextures[8], new float[] {
-						0.0f, 1.0f,
-						2.5f/3.0f, 1.0f,
-						0.0f, 0.5f,
-						2.5f/3.0f, 0.5f,
-					});
-					CLReDraw.Rect(-1.0f+step*3.5f, 1.0f-step*7.5f, step*2, step*0.5f, this.fieldTextures[8], new float[] {
-						0.5f/3.0f, 1.0f,
-						2.5f/3.0f, 1.0f,
-						0.5f/3.0f, 0.5f,
-						2.5f/3.0f, 0.5f,
-					});
-					CLReDraw.Rect(-1.0f+step*5.5f, 1.0f-step*7.5f, step*2.5f, step*0.5f, this.fieldTextures[8], new float[] {
-						0.5f/3.0f, 1.0f,
-						1.0f, 1.0f,
-						0.5f/3.0f, 0.5f,
-						1.0f, 0.5f,
-					});
+					int textureId = (int)CLColour.CLMax+(int)CLLabelSize.CLLarge;
+					CLReDraw.Rect(-1.0f+step, 1.0f-step, step*7, step*7, this.fieldTextures[textureId]);
 				
 					this.popUp.DrawText(0.0f, -step*3.5f);
 				};
@@ -748,19 +673,8 @@ namespace ColorLinesNG {
 				}
 			};
 			this.popUp.ExtraDraw = delegate() {
-				CLReDraw.Rect(-1.0f+step*2, 1.0f-step*4, step*2.5f, step, this.fieldTextures[8], new float[] {
-					0.0f, 1.0f,
-					2.5f/3.0f, 1.0f,
-					0.0f, 0.0f,
-					2.5f/3.0f, 0.0f,
-				});
-				CLReDraw.Rect(-1.0f+step*4.5f, 1.0f-step*4, step*2.5f, step, this.fieldTextures[8], new float[] {
-					0.5f/3.0f, 1.0f,
-					1.0f, 1.0f,
-					0.5f/3.0f, 0.0f,
-					1.0f, 0.0f,
-				});
-				this.popUp.DrawText(0.0f, 0.0f);
+				int textureId = (int)CLColour.CLMax+(int)CLLabelSize.CLMiddle;
+				this.popUp.Draw(this.fieldTextures[textureId], 0.0f, 0.0f);
 			};
 			CLReDraw.EditText(-1.0f+step*3.45f, 1.0f-step*4.2f, this.textSize / 1.6f, Color.Argb(255, 0, 170, 0), this.popUp.Action);
 		}

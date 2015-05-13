@@ -81,7 +81,9 @@
     <AndroidAsset Include="Assets\textures\CLNG_Pink.png" />
     <AndroidAsset Include="Assets\textures\CLNG_Red.png" />
     <AndroidAsset Include="Assets\textures\CLNG_Yellow.png" />
-    <AndroidAsset Include="Assets\textures\CLNG_Label10.png" />
+    <AndroidAsset Include="Assets\textures\CLNG_LabelLarge.png" />
+    <AndroidAsset Include="Assets\textures\CLNG_LabelMiddle.png" />
+    <AndroidAsset Include="Assets\textures\CLNG_LabelSmall.png" />
     <Content Include="Properties\AndroidManifest.xml" />
     <AndroidResource Include="Resources\drawable\icon.png" />
     <AndroidResource Include="Resources\values-ru\Strings.xml" />
