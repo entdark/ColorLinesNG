@@ -87,8 +87,8 @@ namespace ColorLinesNG {
 				return;
 			}
 			if (SpecialRefresh) {
-				base.DestroyFrameBuffer();
-				base.CreateFrameBuffer();
+//				base.DestroyFrameBuffer();
+//				base.CreateFrameBuffer();
 			}
 
 			this.field.MakeLabels(GLView.context.Resources.Configuration.Orientation == Android.Content.Res.Orientation.Landscape, left, right, bottom, top, scale);
